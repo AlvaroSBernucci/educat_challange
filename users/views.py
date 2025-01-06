@@ -4,9 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import User, Lesson
-from .serializers import UserSerializer, LessonSerializer
+from .models import User
+from .serializers import UserSerializer
 
+from lessons.models import Lesson
+from lessons.serializers import LessonSerializer
 
 
 class UserListView(APIView):
@@ -39,7 +41,7 @@ class UserDetailView(APIView):
 class DashboardView(APIView):
     def get(self, request, pk):
         user = get_object_or_404(User, pk=pk)
-
+        # user = request.user ativar com o front
         if not user.is_teacher:
             return Response({'error': 'Este usuário não é um professor.'}, status=status.HTTP_400_BAD_REQUEST)
 
