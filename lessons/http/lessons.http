@@ -1,0 +1,59 @@
+GET http://localhost:8000/api/lessons
+
+
+###
+
+
+POST http://localhost:8000/api/lessons/
+Content-Type: application/json
+
+{
+    "lesson_title": "Matemática",
+    "lesson_description": "Aula de Matemática",
+    "lesson_schedule": "09:23:08",
+    "teacher": 2
+}
+
+
+###
+
+
+GET http://localhost:8000/api/lessons/2
+
+
+###
+
+
+DELETE http://localhost:8000/api/lessons/3/
+
+
+###
+
+PUT http://localhost:8000/api/lessons/2/
+Content-Type: application/json
+
+{
+    "lesson_title": "Matemática",
+    "lesson_description": "Aula de Matemática",
+    "lesson_schedule": "09:23:08",
+    "teacher": 2
+}
+
+###
+
+
+GET http://localhost:8000/api/users/2
+
+
+###
+
+
+PUT http://localhost:8000/api/users/2/
+Content-Type: application/json
+
+{
+  "user_name": "Ricardo Bonaldo",
+  "user_email": "ricardo@gmail.com",
+  "user_profile_photo": null,
+  "is_teacher": true
+}
