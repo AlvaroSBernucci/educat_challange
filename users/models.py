@@ -9,3 +9,6 @@ class User(models.Model):
 
     def __str__(self):
         return f'Nome: {self.user_name} | E-mail: {self.user_email}'
+
+
+# Select *, (select count(1) from aluno_aula aa where aa.aula_id = a.id ) numero_de alunos from Aula a

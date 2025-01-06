@@ -19,6 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/users', include('users.urls', namespace='users')),
-    path('api/lessons', include('lessons.urls', namespace='lessons')),
+    path('api/users/', include('users.urls', namespace='users')),
+    path('api/lessons/', include('lessons.urls', namespace='lessons')),
 ]
