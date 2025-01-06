@@ -13,3 +13,6 @@ class Lesson(models.Model):
 
     def __repr__(self):
         return f"<Lesson: {self.lesson_title}>"
+
+    def student_count(self):
+        return self.students.count()
