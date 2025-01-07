@@ -1,4 +1,4 @@
-GET http://localhost:8000/api/lessons
+GET http://localhost:8000/api/users
 
 
 ###
@@ -57,3 +57,9 @@ Content-Type: application/json
   "user_profile_photo": null,
   "is_teacher": true
 }
+
+
+###
+
+
+GET http://localhost:8000/api/users/dashboard/7/
