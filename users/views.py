@@ -41,7 +41,7 @@ class UserDetailView(APIView):
 class DashboardView(APIView):
     def get(self, request, pk):
         user = get_object_or_404(User, pk=pk)
-
+        # user = request.user ativar com o front
         if not user.is_teacher:
             return Response({'error': 'Este usuário não é um professor.'}, status=status.HTTP_400_BAD_REQUEST)
 
