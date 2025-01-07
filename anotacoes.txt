@@ -38,3 +38,18 @@ Instalaçao:
   na parte de config, trocar o código pelo nome da variavel
   Ex: SECRET_KEY = config("SECRET_KEY")
   Adicionar o .env no gitignore
+
+
+INSTALAÇÃO REACT:
+
+REACT ROUTER DOM: É o módulo para ter várias paginas no front end
+
+REACT HOT TOAST: Mostra notificacoes depois de interações
+
+AXIOS: É um framework pra fazer o fetch de maneira mais rapida e prática sem ter que parsear para JSON
+
+REACT HOOK FORM: Ajuda a validar o formulário no próprio frontend
+https://www.youtube.com/watch?v=38XWpyEK8IY
+
+
+PORQUE UTILIZAR O CORS HEADERS?

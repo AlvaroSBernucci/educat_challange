@@ -4,9 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import User, Lesson
-from .serializers import UserSerializer, LessonSerializer
+from .models import User
+from .serializers import UserSerializer
 
+from lessons.models import Lesson
+from lessons.serializers import LessonSerializer
 
 
 class UserListView(APIView):
