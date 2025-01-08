@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import { createLesson } from "../api/lesson.api";
+import { createLesson, deleteLesson, getLesson, updateLesson } from "../api/lesson.api";
 import { getUsers } from "../api/users.api";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function LessonFormPage() {
   const [teachers, setTeachers] = useState([]);
@@ -22,12 +23,32 @@ export function LessonFormPage() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
+  const navigate = useNavigate();
+  const params = useParams();
+
+  useEffect(() => {
+    async function loadLesson() {
+      if (params.id) {
+        const { data } = await getLesson(params.id);
+        setValue("lesson_title", data.lesson_title);
+        setValue("lesson_description", data.lesson_description);
+        setValue("lesson_schedule", data.lesson_schedule);
+        setValue("teacher", data.teacher);
+      }
+    }
+    loadLesson();
+  }, []);
+
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-    const response = await createLesson(data);
-    console.log(response);
+    if (params.id) {
+      await updateLesson(params.id, data);
+    } else {
+      await createLesson(data);
+    }
+    navigate("/lesson");
   });
 
   if (loading) {
@@ -64,8 +85,20 @@ export function LessonFormPage() {
 
           {errors.lesson_schedule && <span>Este campo é obrigatório</span>}
         </div>
-        <button type="submit">Criar Aula</button>
+        <button type="submit">Salvar</button>
       </form>
+      {params.id && (
+        <button
+          onClick={async () => {
+            const acepted = window.confirm("Tem certeza?");
+            if (acepted) {
+              await deleteLesson(params.id);
+              navigate("/lesson");
+            }
+          }}>
+          Deletar
+        </button>
+      )}
     </div>
   );
 }
