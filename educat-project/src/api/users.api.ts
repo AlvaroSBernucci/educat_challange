@@ -5,3 +5,5 @@ const usersApi = axios.create({
 });
 
 export const getUsers = () => usersApi.get("/");
+
+export const getUser = (id) => usersApi.get(`/${id}/`);
