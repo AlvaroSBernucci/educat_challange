@@ -3,6 +3,7 @@ import { createLesson, deleteLesson, getLesson, updateLesson } from "../api/less
 import { getUsers } from "../api/users.api";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function LessonFormPage() {
   const [teachers, setTeachers] = useState([]);
@@ -45,8 +46,10 @@ export function LessonFormPage() {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updateLesson(params.id, data);
+      toast.success("Aula editada com Sucesso!");
     } else {
       await createLesson(data);
+      toast.success("Aula criada com sucesso!");
     }
     navigate("/lesson");
   });
@@ -55,26 +58,52 @@ export function LessonFormPage() {
     return <div>Carregando...</div>;
   }
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="lesson_title">Nome da aula</label>
-          <input type="text" id="lesson_title" placeholder="Insira o nome da aula" {...register("lesson_title", { required: true })} />
+    <div className="container mt-5">
+      <form onSubmit={onSubmit} className="p-4 form-lesson rounded-3">
+        <div className="mb-3">
+          <label htmlFor="lesson_title" className="form-label">
+            Nome da aula
+          </label>
+          <input
+            className="form-control"
+            type="text"
+            id="lesson_title"
+            placeholder="Insira o nome da aula"
+            {...register("lesson_title", { required: true })}
+          />
           {errors.lesson_title && <span>Este campo é obrigatório</span>}
         </div>
-        <div>
-          <label htmlFor="lesson_description">Descrição da aula</label>
-          <input type="text" id="lesson_description" placeholder="Insira a descrição" {...register("lesson_description", { required: true })} />
+        <div className="mb-3">
+          <label className="form-label" htmlFor="lesson_description">
+            Descrição da aula
+          </label>
+          <input
+            className="form-control"
+            type="text"
+            id="lesson_description"
+            placeholder="Insira a descrição"
+            {...register("lesson_description", { required: true })}
+          />
           {errors.lesson_description && <span>Este campo é obrigatório</span>}
         </div>
-        <div>
-          <label htmlFor="lesson_schedule">Horário da aula</label>
-          <input type="datetime-local" id="lesson_schedule" step="300" {...register("lesson_schedule", { required: true })} />
+        <div className="mb-3">
+          <label className="form-label" htmlFor="lesson_schedule">
+            Horário da aula
+          </label>
+          <input
+            className="form-control"
+            type="datetime-local"
+            id="lesson_schedule"
+            step="300"
+            {...register("lesson_schedule", { required: true })}
+          />
           {errors.lesson_schedule && <span>Este campo é obrigatório</span>}
         </div>
-        <div>
-          <label htmlFor="teacher">Professor</label>
-          <select id="teacher" {...register("teacher")}>
+        <div className="mb-3">
+          <label htmlFor="teacher" className="form-label">
+            Professor
+          </label>
+          <select id="teacher" {...register("teacher")} className="form-select">
             <option value="">Selecione um professor</option>
             {teachers.map((teacher) => (
               <option key={teacher.id} value={teacher.id}>
@@ -85,20 +114,26 @@ export function LessonFormPage() {
 
           {errors.lesson_schedule && <span>Este campo é obrigatório</span>}
         </div>
-        <button type="submit">Salvar</button>
+        <div className="d-flex justify-content-between mt-5">
+          <button type="submit" className="btn btn-custom text-light">
+            Salvar
+          </button>
+          {params.id && (
+            <button
+              className="btn btn-danger"
+              onClick={async () => {
+                const acepted = window.confirm("Tem certeza?");
+                if (acepted) {
+                  await deleteLesson(params.id);
+                  toast.success("Aula deletada com Sucesso!");
+                  navigate("/lesson");
+                }
+              }}>
+              Deletar
+            </button>
+          )}
+        </div>
       </form>
-      {params.id && (
-        <button
-          onClick={async () => {
-            const acepted = window.confirm("Tem certeza?");
-            if (acepted) {
-              await deleteLesson(params.id);
-              navigate("/lesson");
-            }
-          }}>
-          Deletar
-        </button>
-      )}
     </div>
   );
 }
