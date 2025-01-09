@@ -1,27 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getUser } from "../api/users.api";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export function Navigation() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function loadUser() {
-      if (localStorage.getItem("token")) {
-        try {
-          const response = await getUser();
-          setCurrentUser(response.data);
-        } catch (error) {
-          console.error("Erro ao buscar dados do usuário:", error);
-          setCurrentUser(null);
-          localStorage.removeItem("token");
-        }
-      }
-    }
-
-    loadUser();
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -40,6 +23,9 @@ export function Navigation() {
             <>
               <Link to="/lesson" className="btn btn-success btn-custom">
                 Aulas
+              </Link>
+              <Link to="/me" className="btn btn-success btn-custom">
+                Perfil
               </Link>
               <button className="btn btn-success btn-custom" onClick={handleLogout}>
                 Log out
