@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getLesson } from "../api/lesson.api";
+import { addStudentLesson, getLesson } from "../api/lesson.api";
 import { format } from "date-fns";
 import { getUser } from "../api/users.api";
+import toast from "react-hot-toast";
 
 export default function LessonShowPage() {
   const [lesson, setLesson] = useState([]);
@@ -53,7 +54,14 @@ export default function LessonShowPage() {
         <p>
           <span className="fw-bold">Sobre:</span> {lesson.lesson_description}
         </p>
-        <button className="btn btn-custom text-light mt-4">Inscrever-se</button>
+        <button
+          className="btn btn-custom text-light mt-4"
+          onClick={() => {
+            addStudentLesson(lesson.id, lesson);
+            toast.success("Matriculado com sucesso!");
+          }}>
+          Inscrever-se
+        </button>
       </div>
     </div>
   );

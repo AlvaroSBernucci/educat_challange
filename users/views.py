@@ -24,24 +24,21 @@ class UserListView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class UserDetailView(APIView):
-    def get(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        # user = request.user ativar com o front
+    def get(self, request):
+        user = request.user
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-    def put(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        # user = request.user ativar com o front
+    def put(self, request):
+        user = request.user
         serializer = UserSerializer(user, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
 
 class DashboardView(APIView):
-    def get(self, request, pk):
-        user = get_object_or_404(User, pk=pk)
-        # user = request.user ativar com o front
+    def get(self, request):
+        user = request.user
         if not user.is_teacher:
             return Response({'error': 'Este usuário não é um professor.'}, status=status.HTTP_400_BAD_REQUEST)
 
