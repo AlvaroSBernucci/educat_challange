@@ -1,7 +1,9 @@
-GET http://localhost:8000/api/users
+GET http://localhost:8000/api/users/current-teacher/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NDcxNTkwLCJpYXQiOjE3MzYzODUxOTAsImp0aSI6ImYxZWUxOTZkZDJjYjQ4YWViNTFmNDY1MTNiY2Y5OWU3IiwidXNlcl9pZCI6MX0.vuPFf0CfvfKWODNapatrk0jlvcGVia1pAeU08u7-CHc
 
 
 ###
+
 
 
 POST http://localhost:8000/api/lessons/
@@ -16,6 +18,8 @@ Content-Type: application/json
 
 
 ###
+
+
 
 
 GET http://localhost:8000/api/lessons/2
@@ -62,4 +66,5 @@ Content-Type: application/json
 ###
 
 
-GET http://localhost:8000/api/users/dashboard/7/
+GET http://localhost:8000/api/users/dashboard/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NTIzMzczLCJpYXQiOjE3MzY0MzY5NzMsImp0aSI6Ijc4MjhiMDI0NzEyYzRhOTFiYzBkYTZjY2JhZDUyNzQ1IiwidXNlcl9pZCI6NH0.iTWuQSJ-p5e1BhuFLNwU9Csa0x0zTxJ5D_-bWxooe0Y

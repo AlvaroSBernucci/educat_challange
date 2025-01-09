@@ -23,7 +23,7 @@ function UserShowPage() {
     await updateUser(data);
     const response = await getUser();
     setCurrentUser(response.data);
-    toast.success("Aula criada com sucesso!");
+    toast.success("Perfil editado com sucesso!");
   });
 
   return (

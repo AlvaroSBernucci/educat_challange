@@ -4,11 +4,12 @@ import { getUser } from "../api/users.api";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     async function loadUser() {
-      if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
+      if (token) {
         try {
           const response = await getUser();
           setCurrentUser(response.data);
@@ -23,5 +24,15 @@ export const UserProvider = ({ children }) => {
     loadUser();
   }, []);
 
-  return <UserContext.Provider value={{ currentUser, setCurrentUser }}>{children}</UserContext.Provider>;
+  const login = async (token) => {
+    localStorage.setItem("token", token);
+    try {
+      const response = await getUser();
+      setCurrentUser(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar dados do usuário após login:", error);
+    }
+  };
+
+  return <UserContext.Provider value={{ currentUser, setCurrentUser, login }}>{children}</UserContext.Provider>;
 };

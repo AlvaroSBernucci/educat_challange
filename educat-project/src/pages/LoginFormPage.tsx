@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export default function LoginFormPage() {
   const {
@@ -10,6 +11,7 @@ export default function LoginFormPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { login } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -24,6 +26,8 @@ export default function LoginFormPage() {
         password: data.password,
       });
       const token = response.data.access;
+      await login(token);
+
       localStorage.setItem("token", token);
       navigate("/lesson");
     } catch (error) {

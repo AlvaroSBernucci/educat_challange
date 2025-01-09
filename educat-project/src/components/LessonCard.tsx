@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export function LessonCard({ lesson }) {
   const navigate = useNavigate();
   const rawDate = lesson.lesson_schedule;
   const formattedDate = format(new Date(rawDate), "dd/MM/yyyy");
   const formattedTime = format(new Date(rawDate), "HH:mm");
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
+  const typeFunction = currentUser.is_superuser ? `/lesson/${lesson.id}` : `/lesson-show/${lesson.id}`;
   return (
     <div
       onClick={() => {
-        navigate(`/lesson-show/${lesson.id}`);
+        navigate(typeFunction);
       }}
       className="col-6">
       <div className="p-3 rounded-4 h-100 card-lesson">

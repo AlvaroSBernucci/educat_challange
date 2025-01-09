@@ -27,14 +27,19 @@ export function Navigation() {
               <Link to="/me" className="btn btn-success btn-custom">
                 Perfil
               </Link>
-              <button className="btn btn-success btn-custom" onClick={handleLogout}>
-                Log out
-              </button>
+              {currentUser.is_teacher && (
+                <Link to="/me/dashboard" className="btn btn-success btn-custom">
+                  Dashboard
+                </Link>
+              )}
               {currentUser.is_superuser && (
                 <Link to="/lesson-create" className="btn btn-success btn-custom">
                   Adicionar Aula
                 </Link>
               )}
+              <button className="btn btn-success btn-custom" onClick={handleLogout}>
+                Log out
+              </button>
             </>
           ) : (
             <Link to="/login" className="btn btn-success btn-custom">

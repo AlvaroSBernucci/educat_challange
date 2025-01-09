@@ -59,6 +59,7 @@ export function LessonFormPage() {
   }
   return (
     <div className="container mt-5">
+      {params.id ? <h2>Editar Aula</h2> : <h2>Criar Aula</h2>}
       <form onSubmit={onSubmit} className="p-4 form-lesson rounded-3">
         <div className="mb-3">
           <label htmlFor="lesson_title" className="form-label">
@@ -107,7 +108,7 @@ export function LessonFormPage() {
             <option value="">Selecione um professor</option>
             {teachers.map((teacher) => (
               <option key={teacher.id} value={teacher.id}>
-                {teacher.user_name}
+                {teacher.username}
               </option>
             ))}
           </select>
