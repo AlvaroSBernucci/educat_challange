@@ -32,19 +32,23 @@ export default function LoginFormPage() {
   });
 
   return (
-    <div className="container">
-      <form onSubmit={onSubmit}>
+    <div className="container mt-5 d-flex justify-content-center">
+      <form onSubmit={onSubmit} className="login-form p-4 rounded-4 w-100">
         <div>
-          <label htmlFor="username">Usuário</label>
-          <input className="form-control" type="text" id="username" {...register("username", { required: true })} />
+          <label htmlFor="username" className="mb-3">
+            Usuário
+          </label>
+          <input className="form-control mb-3" type="text" id="username" {...register("username", { required: true })} />
           {errors.username && <span>Este campo é obrigatório</span>}
         </div>
         <div>
-          <label htmlFor="password">Senha</label>
-          <input className="form-control" type="password" id="password" {...register("password", { required: true })} />
+          <label htmlFor="password" className="mb-3">
+            Senha
+          </label>
+          <input className="form-control mb-3" type="password" id="password" {...register("password", { required: true })} />
           {errors.password && <span>Este campo é obrigatório</span>}
         </div>
-        <button className="btn btn-custom text-light">Log in</button>
+        <button className="btn btn-custom text-light mt-5">Log in</button>
       </form>
     </div>
   );
