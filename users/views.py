@@ -36,13 +36,17 @@ class UserDetailView(APIView):
         serializer.save()
         return Response(serializer.data)
 
+class TeacherDetailView(APIView):
+    def get(self, request, pk):
+        user = get_object_or_404(User, pk=pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
 class DashboardView(APIView):
     def get(self, request):
         user = request.user
         if not user.is_teacher:
             return Response({'error': 'Este usuário não é um professor.'}, status=status.HTTP_400_BAD_REQUEST)
-
         lessons = Lesson.objects.filter(teacher=user)
         serializer = LessonSerializer(lessons, many=True)
-
         return Response(serializer.data)

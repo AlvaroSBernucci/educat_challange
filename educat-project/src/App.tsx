@@ -9,6 +9,7 @@ import { LessonFormPage } from "./pages/LessonFormPage";
 import LessonShowPage from "./pages/LessonShowPage";
 import UserShowPage from "./pages/UserShowPage";
 import LoginFormPage from "./pages/LoginFormPage";
+import TeacherDashboard from "./pages/TeacherDashboard";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/lesson/:id" element={<LessonFormPage />}></Route>
           <Route path="/lesson-show/:id" element={<LessonShowPage />}></Route>
           <Route path="/me" element={<UserShowPage />}></Route>
+          <Route path="/me/dashboard" element={<TeacherDashboard />}></Route>
         </Routes>
         <Toaster />
       </BrowserRouter>
