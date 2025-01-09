@@ -1,15 +1,13 @@
-import axios from "axios";
+import api from ".";
 
-const lessonsApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/lessons/",
-});
+export const getAllLessons = () => api.get("/lessons/");
 
-export const getAllLessons = () => lessonsApi.get("/");
+export const createLesson = (lesson) => api.post("/lessons/", lesson);
 
-export const createLesson = (lesson) => lessonsApi.post("/", lesson);
+export const deleteLesson = (id) => api.delete(`/lessons/${id}/`);
 
-export const deleteLesson = (id) => lessonsApi.delete(`/${id}/`);
+export const getLesson = (id) => api.get(`/lessons/${id}/`);
 
-export const getLesson = (id) => lessonsApi.get(`/${id}/`);
+export const updateLesson = (id, lesson) => api.put(`/lessons/${id}/`, lesson);
 
-export const updateLesson = (id, lesson) => lessonsApi.put(`/${id}/`, lesson);
+export const addStudentLesson = (id, lesson) => api.put(`/lessons/${id}/add_student/`, lesson);

@@ -5,6 +5,6 @@ from .views import UserListView, UserDetailView, DashboardView
 app_name = "users"
 urlpatterns = [
     path("", UserListView.as_view(), name="user-list"),
-    path("<int:pk>/", UserDetailView.as_view(), name="user-detail"),
+    path("me/", UserDetailView.as_view(), name="user-detail"),
     path('dashboard/<int:pk>/', DashboardView.as_view(), name='dashboard-view'),
 ]

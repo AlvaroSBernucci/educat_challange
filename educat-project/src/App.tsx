@@ -6,6 +6,7 @@ import LessonShowPage from "./pages/LessonShowPage";
 import { Toaster } from "react-hot-toast";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import LoginFormPage from "./pages/LoginFormPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Navigate to="/lesson" />}></Route>
+        <Route path="/login" element={<LoginFormPage />}></Route>
         <Route path="/lesson" element={<LessonPage />}></Route>
         <Route path="/lesson-create" element={<LessonFormPage />}></Route>
         <Route path="/lesson/:id" element={<LessonFormPage />}></Route>
