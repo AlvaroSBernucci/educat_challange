@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from decouple import config, Csv
 from datetime import timedelta
@@ -28,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS").split(",")
 
 # Application definition
 
@@ -59,7 +61,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'setup.urls'
 
-import os
 
 TEMPLATES = [
     {
@@ -89,6 +90,19 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "mssql",
+#         "NAME": "localhost",
+#         "USER": "sa",
+#         "PASSWORD": "Senha123#",
+#         "HOST": "HOST_ADDRESS",
+#         "PORT": "1433",
+#         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server",
+#         },
+#     },
+# }
 
 
 # Password validation
@@ -132,7 +146,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:5173"]
 
 
 REST_FRAMEWORK = {

@@ -15,8 +15,10 @@ function UserShowPage() {
   } = useForm();
 
   useEffect(() => {
-    setValue("username", currentUser.username);
-    setValue("email", currentUser.email);
+    if (currentUser) {
+      setValue("username", currentUser.username);
+      setValue("email", currentUser.email);
+    }
   }, [currentUser]);
 
   const onSubmit = handleSubmit(async (data) => {

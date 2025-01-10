@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
-          <Route path="/" element={<Navigate to="/lesson" />}></Route>
+          <Route path="/" element={<Navigate to="/login" />}></Route>
           <Route path="/login" element={<LoginFormPage />}></Route>
           <Route path="/lesson" element={<LessonPage />}></Route>
           <Route path="/lesson-create" element={<LessonFormPage />}></Route>

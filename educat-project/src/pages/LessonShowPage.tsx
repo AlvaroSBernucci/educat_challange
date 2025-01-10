@@ -33,7 +33,6 @@ export default function LessonShowPage() {
 
   useEffect(() => {
     async function checkStudent() {
-      console.log(lesson);
       if (lesson.student_count >= 0) {
         const validateUser = lesson.students.find((id) => id === currentUser.id);
         setStudent(validateUser);
@@ -68,23 +67,25 @@ export default function LessonShowPage() {
         <p>
           <span className="fw-bold">Sobre:</span> {lesson.lesson_description}
         </p>
-        {student ? (
-          <button className="btn btn-custom text-light mt-4" disabled>
-            Inscrito
-          </button>
-        ) : (
-          <button
-            className="btn btn-custom text-light mt-4"
-            onClick={(event) => {
-              addStudentLesson(lesson.id, lesson);
-              toast.success("Matriculado com sucesso!");
-              event.target.disabled = true;
-              event.target.innerHTML = "Inscrito";
-              console.log(event);
-            }}>
-            Inscrever-se
-          </button>
-        )}
+        {currentUser &&
+          !currentUser.is_teacher &&
+          (student ? (
+            <button className="btn btn-custom text-light mt-4" disabled>
+              Inscrito
+            </button>
+          ) : (
+            <button
+              className="btn btn-custom text-light mt-4"
+              onClick={(event) => {
+                addStudentLesson(lesson.id, lesson);
+                toast.success("Matriculado com sucesso!");
+                event.target.disabled = true;
+                event.target.innerHTML = "Inscrito";
+                console.log(event);
+              }}>
+              Inscrever-se
+            </button>
+          ))}
       </div>
     </div>
   );
