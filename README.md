@@ -159,6 +159,6 @@ projeto/
 
 ## Pendências
 
-1) Estou utilizando o WSL na minha máquina, tentei instalar o MySql diversas vezes, mas tive erro por causa da versão do driver ODBC, ralmente não consegui realizar a instalação a tempo, optei por priorizar o resto do projeto.
+1) Estou utilizando o WSL na minha máquina, tentei instalar o MySql diversas vezes, utilizei o docker e o banco estava rodando na minha máquina, porém deu erro no driver ODBC então não consegui conectar na aplicação, ralmente não consegui realizar a instalação a tempo, optei por priorizar o resto do projeto.
 2) A foto de perfil pode ser inserida ao criar o usuário, mas não pode ser editada, tive um problema no patch onde a requisição de atualizar a foto estava derrubando o usuário e deixando inativo.
 
