@@ -141,4 +141,4 @@ projeto/
 ## Informações extras
 
 1) Somente admins tem acesso ao CRUD de Aulas no frontend
-2) 
+
