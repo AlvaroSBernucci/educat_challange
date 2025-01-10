@@ -1,5 +1,9 @@
 import { LessonsList } from "../components/LessonsList";
 
 export function LessonPage() {
-  return <LessonsList />;
+  return (
+    <div>
+      <LessonsList />;
+    </div>
+  );
 }
