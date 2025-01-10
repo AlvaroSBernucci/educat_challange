@@ -28,3 +28,8 @@ nav.navbar {
   min-height: 350px;
   max-width: 450px;
 }
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}

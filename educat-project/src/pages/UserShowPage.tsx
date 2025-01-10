@@ -31,6 +31,11 @@ function UserShowPage() {
   return (
     <div className="container mt-5 d-flex justify-content-center">
       <form className="login-form p-4 rounded-4 w-100" onSubmit={onSubmit}>
+        {currentUser && currentUser.user_profile_photo && (
+          <div className="d-flex justify-content-center mb-3">
+            <img src={`http://localhost:8000/${currentUser.user_profile_photo}`} alt="" className="profile-img" />
+          </div>
+        )}
         <div>
           <label htmlFor="username" className="mb-3">
             Usuário
