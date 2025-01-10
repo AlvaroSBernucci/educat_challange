@@ -156,5 +156,9 @@ projeto/
 3) Somente o admin pode criar e editar as aulas.
 4) As aulas devem iniciar em horários múltiplos de 5 minutos, como por exemplo, 16:30 ou 16:35.
 5) Para criar uma aula é necessário que tenha um professor cadastrado.
-6) Estou utilizando o WSL na minha máquina, tentei instalar o MySql diversas vezes, mas tive erro por causa da versão do driver ODBC, ralmente não consegui realizar a instalação a tempo, optei por priorizar o resto do projeto.
+
+## Pendências
+
+1) Estou utilizando o WSL na minha máquina, tentei instalar o MySql diversas vezes, mas tive erro por causa da versão do driver ODBC, ralmente não consegui realizar a instalação a tempo, optei por priorizar o resto do projeto.
+2) A foto de perfil pode ser inserida ao criar o usuário, mas não pode ser editada, tive um problema no patch onde a requisição de atualizar a foto estava derrubando o usuário e deixando inativo.
 
