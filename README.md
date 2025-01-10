@@ -44,13 +44,12 @@ uritemplate==4.1.1
 
     ```bash
     git clone https://github.com/AlvaroSBernucci/educat_challange
-    cd seu-repositorio/backend
     ```
 
 2. Crie e ative um ambiente virtual:
 
     ```bash
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate  # No Windows: venv\Scripts\activate
     ```
 
@@ -60,21 +59,29 @@ uritemplate==4.1.1
     pip install -r requirements.txt
     ```
 
-4. Configure as variáveis de ambiente no arquivo `.env`:
+4.  Gere uma secret key:
+   
+    ```bash
+      openssl rand -base64 32 (gerar secret key)
+    ```bash
+
+5. Crie um arquivo `.env` na pasta raiz e configure as variáveis de ambiente no arquivo :
 
     ```plaintext
     SECRET_KEY=uma-chave-secreta-aqui
     DEBUG=True
+    ALLOWED_HOSTS=*
+    CORS_ALLOWED_ORIGINS=http://127.0.0.1:5173
     DATABASE_URL=mssql+pyodbc://usuario:senha@host:porta/nome_banco?driver=ODBC+Driver+17+for+SQL+Server
     ```
 
-5. Execute as migrações do banco de dados:
+6. Execute as migrações do banco de dados:
 
     ```bash
     python manage.py migrate
     ```
 
-6. Inicie o servidor de desenvolvimento do backend:
+7. Inicie o servidor de desenvolvimento do backend:
 
     ```bash
     python manage.py runserver
@@ -82,10 +89,10 @@ uritemplate==4.1.1
 
 ### 2. Configurando o Frontend
 
-1. Navegue até o diretório do frontend:
+1. Abra um terminal paralelo(bash) e navegue até o diretório educat-project:
 
     ```bash
-    cd ../frontend
+    cd educat-challange # Se estiver na raiz do projeto
     ```
 
 2. Instale as dependências:
@@ -94,22 +101,25 @@ uritemplate==4.1.1
     npm install  # ou yarn install
     ```
 
-3. Configure o arquivo `.env` com a URL do backend:
-
-    ```plaintext
-    REACT_APP_API_URL=http://localhost:8000/api
-    ```
 
 4. Inicie o servidor de desenvolvimento do frontend:
 
     ```bash
-    npm start  # ou yarn start
+    npm run dev  # ou yarn dev
     ```
 
 ## Testando a Aplicação
 
-1. Acesse o frontend no navegador em `http://localhost:3000`.
-2. O backend estará disponível em `http://localhost:8000`.
+1. Crie um super usário para realizar os testes :
+
+    ```bash
+    python manage.py createsuperuser
+    ```
+   
+2. Acesse o frontend no navegador em `http://127.0.0.1:5173`.
+3. O backend estará disponível em `http://localhost:8000`.
+4. Você pode criar aulas e usuários através do painel de admin do django com usuário e senhas cadastrados no item 1.
+5. Você pode criar aulas e usuários diretamente do frontend logando no site com usuário e senhas cadastrados no item 1.
 
 ## Documentação da API
 
@@ -141,5 +151,9 @@ projeto/
 
 ## Informações extras
 
-1) Somente admins tem acesso ao CRUD de Aulas no frontend
+1) Somente admins podem criar usuários.
+2) Somente o admin pode escolher os usuários que são professores.
+3) Somente o admin pode criar e editar as aulas.
+4) As aulas devem iniciar em horários múltiplos de 5 minutos, como por exemplo, 16:30 ou 16:35.
+5) Para criar uma aula é necessário que tenha um professor cadastrado.
 
