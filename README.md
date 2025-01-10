@@ -9,6 +9,7 @@ Certifique-se de ter os seguintes softwares instalados em sua máquina:
 - Python 3.10+
 - Node.js 16+
 - npm ou yarn
+- React
 - Banco de dados compatível com MSSQL
 
 ## Dependências do Backend
